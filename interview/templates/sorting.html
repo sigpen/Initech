@@ -1,0 +1,86 @@
+{% load  bootstrap3 %}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Sorting</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        .modal {
+            display:    none;
+            position:   fixed;
+            z-index:    1000;
+            top:        0;
+            left:       0;
+            height:     100%;
+            width:      100%;
+            background: rgba( 255, 255, 255, .8 )
+            url('http://i.stack.imgur.com/FhHRx.gif')
+            50% 50%
+            no-repeat;
+        }
+
+        body.loading {
+        overflow: hidden;
+        }
+
+        body.loading .modal {
+        display: block;
+        }
+
+    </style>
+</head>
+<body>
+<div class="jumbotron" style="margin: auto; text-align: center; width: 100%; height: 100%;">
+<h1>Sorting numbers...</h1>
+<form method="post">
+    {% csrf_token %}
+    <input type=text step=any name="num1" id="number" class="form-control" style="width: 40%; margin-left: 30%;"/><br/>
+    {% buttons %}
+    <br/>
+    <button type="submit" class="btn btn-primary btn-lg">Send</button>
+    {% endbuttons %}
+    <button type="submit" class="btn btn-danger btn-md" ><a href="{% url 'interview:logout' %}">Logout</a></button>
+
+</form>
+<div id="divShow"></div>
+<div class="modal"></div>
+</div>
+<script>
+$(function() {
+    $('form').submit(function(e) {
+        //Preventing empty values being sent to the server
+        if ($('#number').val() === "" ){
+            alert("The field is empty");
+            return false;
+        }
+        e.preventDefault();
+        //Sends post request via ajax, including a csrf token, and represents the response in a div
+        $.ajax({
+            url: "",
+            type: 'POST',
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+            data: $('form').serialize(),
+            dataType: "json",
+            success: function(data) {
+                $("#divShow").html(data.join(','));
+            },
+            error: function (request, status, error) {
+                $("#divShow").html("Invalid data, try again");
+            }
+        });
+    });
+});
+</script>
+<script>
+//Processing spinner script, loading starts when the request has been sent and stops when the response arrives.
+$body = $("body");
+
+$(document).on({
+    ajaxStart: function() { $body.addClass("loading");    },
+     ajaxStop: function() { $body.removeClass("loading"); }
+});
+</script>
+</body>
+</html>
