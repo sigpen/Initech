@@ -1,1 +1,1 @@
-web: gunicorn Initech.wsgi --log-file -
+web: gunicorn initech-interview.wsgi --log-file -
