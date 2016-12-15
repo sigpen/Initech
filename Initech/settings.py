@@ -29,7 +29,9 @@ SECRET_KEY = 'z*h-68xt(u-y9%i5ze@bq=q_3i-cljp^*dru=h6y(6j3#=uk0r'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'initech-interview.herokuapp.com',
+]
 
 
 # Application definition
