@@ -1,5 +1,6 @@
 from django.http.response import HttpResponseRedirect, JsonResponse
 from django.shortcuts import redirect, render
+from django.template.response import TemplateResponse
 from django.urls.base import reverse
 from django.views.generic.base import View
 from django.views.generic import FormView
@@ -66,3 +67,9 @@ class SortingView(LoggedInMixin, View):
 
     def get(self, request, *args, **kwargs):
         return render(request, "sorting.html")
+
+class LayoutView(View):
+    template_name = "Layout.html"
+
+    def get(self, request):
+        return TemplateResponse(request, "Layout.html")

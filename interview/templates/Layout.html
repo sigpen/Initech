@@ -1,0 +1,181 @@
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title> CSS Layout </title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Aref+Ruqaa|Space+Mono" rel="stylesheet">
+<style>
+	a:hover, a:visited, a:link, a:active, a:focus {
+    	text-decoration: none;
+    	color: black;
+	}
+
+	body {
+		background-color: #333;
+	}
+
+	section {
+		margin-left: 300px;
+		min-width: 300px;
+		overflow: auto;
+	}
+
+	section > p {
+		font-family: 'Space Mono', monospace;
+		font-size: 16px;
+		color: #FFFFFF;
+		padding-left: 5px;
+	}
+
+	nav {
+		position: absolute;
+		left: 0;
+		width: 300px;
+		height: auto;
+		font-family: 'Aref Ruqaa', sans-serif;
+		font-size: 3em;
+		background-color: #FFCF75;
+	}
+
+	nav ul {
+		 list-style: none;
+	}
+
+	nav ul li {
+		font-size: 1.2em;		
+	}
+
+	nav ul li a {
+		color: black;
+		border-bottom: 0px white;
+	}
+
+	nav ul li a:hover {
+		border-bottom: 4px solid white;
+		color: black;
+		transition: .2s;
+		-webkit-transition: .2s;
+  		-moz-transition: .2s;
+  		-o-transition: .2s;
+	}
+
+	#clickme {
+		position: absolute;
+		margin-left: 50%;
+	}
+
+	#mynav {
+		visibility: visible;
+	}
+
+	.btn {
+  		cursor: pointer;
+  		margin: 10px;
+  		border-radius: 5px;
+  		text-decoration: none;
+  		padding: 10px;
+  		font-size: 24px;
+  		transition: .3s;
+  		-webkit-transition: .3s;
+  		-moz-transition: .3s;
+  		-o-transition: .3s;
+  		display: inline-block;
+  		background-color: #333;
+	}
+
+
+	.orange {
+  		color: #FFCF75;
+  		border: 2px #FFCF75 solid;
+	}
+
+	.orange:hover {
+  		background-color: #FFCF75;
+  		color: black;
+	}
+
+	footer {
+  		position: absolute;
+  		right: 0;
+  		bottom: 0;
+  		left: 0;
+  		padding: 1rem;
+  		background-color: #efefef;
+  		text-align: center;
+	}
+
+	h1 {
+	color: #FFFFFF;
+	text-align: center;
+	}
+
+	nav ul li.icon {
+		display: none;
+	}
+
+/*	Hiding overflowed text so that the rest of the design of the page wont be affected */
+	@media screen and (max-width: 900px){
+		section { 
+			overflow: hidden;
+			max-height: 400px;
+		 }
+	}
+/* Overflowed text is being displayed using a scroll*/
+	@media screen and (max-width:600px) {
+		section {
+			overflow-y: scroll;
+			overflow-x: hidden;
+			height: 500px;
+		}
+	}
+
+</style>
+</head>
+<body>
+<header>
+	<h1>Initech layout task</h1>
+</header>
+<div class=".container">
+	<nav id="mynav">
+		<ul> 
+			<li><a href="#">home</a></li>
+			<li><a href="#">login</a></li>
+			<li><a href="#">services</a></li>
+			<li><a href="#">about</a></li>
+			<li><a href="#">contact</a></li>
+		</ul>
+	</nav>
+<section>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vitae dui magna. Cras feugiat, mi eget lacinia facilisis, justo risus lacinia purus, at placerat dolor erat nec dui. Quisque sollicitudin odio quis arcu vehicula scelerisque. Nulla facilisi. Sed quis nulla id mauris tincidunt condimentum dignissim eu ipsum. Quisque iaculis nisi ut justo dapibus interdum. Suspendisse dictum turpis ac orci faucibus, et rhoncus lectus aliquet.</p>
+
+		<p>Curabitur eu odio in ligula molestie interdum non at lorem. Pellentesque pellentesque ut ligula porttitor maximus. Morbi non neque erat. Nulla molestie ante nec varius faucibus. Suspendisse eleifend dolor eget gravida ultricies. </p>
+
+		<p>Ut dictum posuere pulvinar. Curabitur condimentum fermentum eros et efficitur. Nam iaculis orci dictum lobortis porttitor. Donec accumsan, ex a convallis vestibulum, turpis nunc malesuada nunc, quis ornare augue quam sit amet ex. Quisque luctus leo vitae ante rhoncus, nec pharetra libero ullamcorper.</p>		
+</section>
+<button type="button" id="clickme" class="btn orange">Click me</button>
+<footer>
+	<p>Made by <strong>Orel Bloch</strong> 2016&copy;<p>
+</footer>
+</div>
+<script> 
+document.getElementById("clickme").addEventListener("click", function() {
+	var navbar = document.getElementById("mynav");
+	this.blur();
+	// Show/hide navbar according to his current state.
+	if (navbar.style.visibility === "hidden"  || navbar.style.visibility === "none"){
+		navbar.style.visibility = "visible";
+		var sections = document.getElementsByTagName("section");
+		for (var i = 0; i < sections.length; i++) {
+    		sections[i].style.marginLeft = "300px";
+		}
+	} else {
+		navbar.style.visibility = "hidden";
+		var sections = document.getElementsByTagName("section");
+		for (var i = 0; i < sections.length; i++) {
+    		sections[i].style.marginLeft = "0px";
+    	}
+	}
+});
+</script>
+</body>
+</html>
